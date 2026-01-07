@@ -1,6 +1,6 @@
 # -*- mode: sh; eval: (sh-set-shell "zsh") -*-
 #
-# Name: { plugin_display_name }}
+# Name: bat
 # Repository: https://github.com/johnstonskj/zsh-bat-plugin
 #
 # Description:
@@ -89,8 +89,12 @@ bat_plugin_unload() {
     local alias
     for alias in ${aliases[@]}; do
         unalias "${alias}"
-    done# Remove the global data variable.
+    done
+    
+    # Remove the global data variable.
     unset BAT
+
+    export MANPAGER="${BAT[_OLD_MANPAGER]}"
 
     # Remove this function.
     unfunction bat_plugin_unload
