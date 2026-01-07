@@ -25,10 +25,10 @@
 
 # See https://wiki.zshell.dev/community/zsh_plugin_standard#standard-plugins-hash
 declare -gA BAT
-$BAT[_PLUGIN_DIR]="${0:h}"
-$BAT[_ALIASES]=""
-$BAT[_FUNCTIONS]=""
-$BAT[_OLD_MANPAGER]="${MANPAGER}"
+BAT[_PLUGIN_DIR]="${0:h}"
+BAT[_ALIASES]=""
+BAT[_FUNCTIONS]=""
+BAT[_OLD_MANPAGER]="${MANPAGER}"
 
 ############################################################################
 # Internal Support Functions
