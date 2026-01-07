@@ -1,6 +1,6 @@
 # -*- mode: sh; eval: (sh-set-shell "zsh") -*-
 #
-# Name: bat
+# Plugin Name: bat
 # Repository: https://github.com/johnstonskj/zsh-bat-plugin
 #
 # Description:
@@ -106,8 +106,8 @@ bat_plugin_unload() {
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-_bat_define_alias cat 'bat'
-_bat_define_alias battail 'bat --paging=never -l log'
+.bat_define_alias cat 'bat'
+.bat_define_alias battail 'bat --paging=never -l log'
 
 ############################################################################
 # Initialize Plugin
