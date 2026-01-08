@@ -28,6 +28,8 @@ declare -gA BAT
 BAT[_PLUGIN_DIR]="${0:h}"
 BAT[_ALIASES]=""
 BAT[_FUNCTIONS]=""
+
+# Saving the current state for any modified global environment variables.
 BAT[_OLD_MANPAGER]="${MANPAGER}"
 
 ############################################################################
@@ -90,11 +92,12 @@ bat_plugin_unload() {
     for alias in ${aliases[@]}; do
         unalias "${alias}"
     done
+
+    # Reset global environment variables .
+    export MANPAGER="${BAT[_OLD_MANPAGER]}"
     
     # Remove the global data variable.
     unset BAT
-
-    export MANPAGER="${BAT[_OLD_MANPAGER]}"
 
     # Remove this function.
     unfunction bat_plugin_unload
