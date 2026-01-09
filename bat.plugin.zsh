@@ -7,9 +7,10 @@
 # Public variables:
 #
 # * `BAT`; plugin-defined global associative array with the following keys:
-#   * \`_PLUGIN_DIR\`; the directory the plugin is sourced from.
-#   * \`_FUNCTIONS\`; a list of all functions defined by the plugin.
-#   * \`_OLD_MANPAGER\`; remember previous value of MANPAGER.
+#   * `_PLUGIN_DIR`; the directory the plugin is sourced from.
+#   * `_FUNCTIONS`; a list of all functions defined by the plugin.
+#   * `_OLD_MANPAGER`; remember previous value of MANPAGER.
+#   * `_OLD_MANROFFOPT`; remember previous value of MANROFFOPT.
 #
 
 ############################################################################
@@ -28,6 +29,7 @@ BAT[_FUNCTIONS]=""
 
 # Saving the current state for any modified global environment variables.
 BAT[_OLD_MANPAGER]="${MANPAGER}"
+BAT[_OLD_MANROFFOPT]="${MANROFFOPT}"
 
 ############################################################################
 # Internal Support Functions
@@ -64,7 +66,18 @@ BAT[_OLD_MANPAGER]="${MANPAGER}"
         BAT[_ALIASES]="${BAT[_ALIASES]},${alias_name}"
     fi
 }
-.bat_remember_fn .bat_remember_alias
+.bat_remember_fn .bat_define_alias
+
+bat_plugin_init() {
+    builtin emulate -L zsh
+
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    export MANROFFOPT="-c"
+
+    .bat_define_alias cat $(which bat)
+    .bat_define_alias battail 'bat --paging=never -l log'
+}
+.bat_remember_fn bat_plugin_init
 
 ############################################################################
 # Plugin Unload Function
@@ -92,6 +105,7 @@ bat_plugin_unload() {
 
     # Reset global environment variables .
     export MANPAGER="${BAT[_OLD_MANPAGER]}"
+    export MANROFFOPT="${BAT[_OLD_MANROFFOPT]}"
     
     # Remove the global data variable.
     unset BAT
@@ -101,16 +115,9 @@ bat_plugin_unload() {
 }
 
 ############################################################################
-# Plugin-defined Aliases
-############################################################################
-
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
-.bat_define_alias cat 'bat'
-.bat_define_alias battail 'bat --paging=never -l log'
-
-############################################################################
 # Initialize Plugin
 ############################################################################
+
+bat_plugin_init
 
 true
