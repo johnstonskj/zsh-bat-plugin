@@ -1,8 +1,18 @@
 # -*- mode: sh; eval: (sh-set-shell "zsh") -*-
 #
-# @name bat
-# @brief Simple environment setup for using `bat` as a cat replacement.
-# @repository https://github.com/johnstonskj/zsh-bat-plugin
+# @name: bat
+# @brief: Set `bat` as a cat replacement.
+# @repository: https://github.com/johnstonskj/zsh-bat-plugin
+# @version: 0.1.1
+# @license: MIT AND Apache-2.0
+#
+# Public variables:
+#
+# * `BAT`; plugin-defined global associative array with the following keys:
+#   * `_PLUGIN_DIR`; the directory the plugin is sourced from.
+#   * `_FUNCTIONS`; a list of all functions defined by the plugin.
+#   * `_OLD_MANPAGER`; remember previous value of MANPAGER.
+#   * `_OLD_MANROFFOPT`; remember previous value of MANROFFOPT.
 #
 
 ############################################################################
