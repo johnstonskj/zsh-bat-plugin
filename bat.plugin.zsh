@@ -2,21 +2,23 @@
 #
 # @name: bat
 # @brief: Set `bat` as a cat replacement.
-############################################################################
 # @repository: https://github.com/johnstonskj/zsh-bat-plugin
 # @version: 0.1.1
 # @license: MIT AND Apache-2.0
 #
-# Public variables:
+# @description
 #
-# * `BAT`; plugin-defined global associative array with the following keys:
-#   * `_PLUGIN_DIR`; the directory the plugin is sourced from.
-#   * `_FUNCTIONS`; a list of all functions defined by the plugin.
-#   * `_OLD_MANPAGER`; remember previous value of MANPAGER.
-#   * `_OLD_MANROFFOPT`; remember previous value of MANROFFOPT.
+# Create aliases `cat` and `battail` using `bat`. Also, setup the `MANPAGER`
+# and `MANROFFOPT` environment variables to use bat as the pager for
+# `man(1)` output.
+#
+# ### Public Variables
+#
+# * `MANPAGER`; the directory the plugin is sourced from.
+# * `MANROFFOPT`; a list of all functions defined by the plugin.
 #
 
-############################################################################
+###################################################################################################
 # @section Lifecycle
 # @description Plugin lifecycle functions.
 #
